@@ -97,7 +97,7 @@
         } else { throw new Error('error'); }
       })
       .catch(function () {
-        window.open('https://gwflow.substack.com/?utm_source=qomon_website&utm_medium=exit_popup', '_blank');
+        window.open('https://gwflow.substack.com/subscribe?email=' + encodeURIComponent(email), '_blank');
         localStorage.setItem(STORAGE_SUBSCRIBED, '1');
         closePopup();
       });
