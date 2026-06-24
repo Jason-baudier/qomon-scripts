@@ -114,21 +114,16 @@
     btn.disabled = true;
 
     fetch(WEBHOOK_URL, {
-  method: 'POST',
-  mode: 'no-cors',
-  headers: { 'Content-Type': 'text/plain' },
-  body: JSON.stringify({ email: email, locale: path })
-})
-    })
-    .then(function (res) {
-      if (res.ok || res.status === 200) {
-        localStorage.setItem(STORAGE_SUBSCRIBED, '1');
-        document.getElementById('qnl-form-wrapper').style.display = 'none';
-        document.getElementById('qnl-success').style.display = 'block';
-        setTimeout(closePopup, 3000);
-      } else { throw new Error('error'); }
-    })
-    .catch(function () {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ email: email, locale: path })
+    }).then(function () {
+      localStorage.setItem(STORAGE_SUBSCRIBED, '1');
+      document.getElementById('qnl-form-wrapper').style.display = 'none';
+      document.getElementById('qnl-success').style.display = 'block';
+      setTimeout(closePopup, 3000);
+    }).catch(function () {
       localStorage.setItem(STORAGE_SUBSCRIBED, '1');
       document.getElementById('qnl-form-wrapper').style.display = 'none';
       document.getElementById('qnl-success').style.display = 'block';
