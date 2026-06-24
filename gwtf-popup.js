@@ -114,9 +114,11 @@
     btn.disabled = true;
 
     fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, locale: path })
+  method: 'POST',
+  mode: 'no-cors',
+  headers: { 'Content-Type': 'text/plain' },
+  body: JSON.stringify({ email: email, locale: path })
+})
     })
     .then(function (res) {
       if (res.ok || res.status === 200) {
