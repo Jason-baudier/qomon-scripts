@@ -113,22 +113,12 @@
     btn.textContent = isFr ? 'Inscription\u2026' : 'Subscribing\u2026';
     btn.disabled = true;
 
-    fetch(WEBHOOK_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ email: email, locale: path })
-    }).then(function () {
-      localStorage.setItem(STORAGE_SUBSCRIBED, '1');
-      document.getElementById('qnl-form-wrapper').style.display = 'none';
-      document.getElementById('qnl-success').style.display = 'block';
-      setTimeout(closePopup, 3000);
-    }).catch(function () {
-      localStorage.setItem(STORAGE_SUBSCRIBED, '1');
-      document.getElementById('qnl-form-wrapper').style.display = 'none';
-      document.getElementById('qnl-success').style.display = 'block';
-      setTimeout(closePopup, 3000);
-    });
+    var img = new Image();
+    img.src = WEBHOOK_URL + '?email=' + encodeURIComponent(email) + '&locale=' + encodeURIComponent(path);
+    localStorage.setItem(STORAGE_SUBSCRIBED, '1');
+    document.getElementById('qnl-form-wrapper').style.display = 'none';
+    document.getElementById('qnl-success').style.display = 'block';
+    setTimeout(closePopup, 3000);
   });
 
   document.getElementById('qnl-email').addEventListener('keydown', function (e) {
